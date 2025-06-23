@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+  <start>
+    <element name="articles">
+      <zeroOrMore>
+        <element name="article">
+          <element name="title">
+            <text/>
+          </element>
+          <element name="author">
+            <text/>
+          </element>
+          <element name="date">
+            <data type="date"/>
+          </element>
+          <element name="discipline">
+            <text/>
+          </element>
+          <element name="source">
+            <text/>
+          </element>
+          <element name="abstract">
+            <mixed>
+              <zeroOrMore>
+                <choice>
+                  <element name="term">
+                    <text/>
+                  </element>
+                  <text/>
+                </choice>
+              </zeroOrMore>
+            </mixed>
+          </element>
+        </element>
+      </zeroOrMore>
+    </element>
+  </start>
+
+</grammar>
+
+
