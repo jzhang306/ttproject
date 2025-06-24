@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Term Frequency Trends</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    canvas { max-width: 900px; margin-bottom: 50px; }
+  </style>
+</head>
+<body>
+  <h1>Scientific Term Trends (arXiv)</h1>
+  <canvas id="trendChart"></canvas>
+
+  <script>
+    async function drawChart() {
+      const response = await fetch("term_stats.json");
+      const data = await response.json();
+
+      const frequency = data.frequency;
+
+      const years = Array.from(
+        new Set(
+          Object.values(frequency)
+            .flatMap(obj => Object.keys(obj))
+        )
+      ).sort();
+
+      const colors = ['#e6194b','#3cb44b','#ffe119','#4363d8','#f58231','#911eb4','#46f0f0'];
+
+      const datasets = Object.entries(frequency).map(([term, yearlyCounts], idx) => ({
+        label: term,
+        data: years.map(y => yearlyCounts[y] || 0),
+        borderColor: colors[idx % colors.length],
+        fill: false
+      }));
+
+      new Chart(document.getElementById('trendChart'), {
+        type: 'line',
+        data: {
+          labels: years,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Term Frequency over Time'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Occurrences'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Year'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    drawChart();
+  </script>
+</body>
+</html>
