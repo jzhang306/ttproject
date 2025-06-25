@@ -13,5 +13,5 @@ def validate_with_relaxng(xml_file, rng_file):
             print(error)
 
 if __name__ == "__main__":
-    validate_with_relaxng("arxiv_articles_annotated.xml", "schema/arxiv_schema.rng")
+    validate_with_relaxng("arxiv_articles_annotated.xml", "scitermtracker.rng")
 

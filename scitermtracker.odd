@@ -1,0 +1,105 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>ODD Specification for Structured Articles</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Unpublished</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Based on an XML structure transformed from an XSLT file.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+
+  <text>
+    <body>
+      <schemaSpec ident="articles-schema" start="articles" mode="change">
+        <moduleRef key="tei"/>
+
+        <startSpec>
+          <elementRef key="articles"/>
+        </startSpec>
+
+        <elementSpec ident="articles" module="core" model="structured" mode="add">
+          <desc>Main container grouping multiple articles</desc>
+          <content>
+            <zeroOrMore>
+              <elementRef key="article"/>
+            </zeroOrMore>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="article" module="core" mode="add">
+          <desc>A scientific or academic article</desc>
+          <content>
+            <sequence>
+              <elementRef key="title"/>
+              <elementRef key="author"/>
+              <elementRef key="date"/>
+              <elementRef key="discipline"/>
+              <elementRef key="source"/>
+              <elementRef key="abstract"/>
+            </sequence>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="title" module="core" mode="change">
+          <desc>Title of the article</desc>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="author" module="core" mode="change">
+          <desc>Author of the article</desc>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="date" module="core" mode="change">
+          <desc>Date of publication</desc>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="discipline" module="core" mode="change">
+          <desc>Disciplinary domain of the article</desc>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="source" module="core" mode="change">
+          <desc>Original source or journal</desc>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="abstract" module="core" mode="change">
+          <desc>Annotated abstract that may include tagged terms</desc>
+          <content>
+            <zeroOrMore>
+              <alternate>
+                <textNode/>
+                <elementRef key="term"/>
+              </alternate>
+            </zeroOrMore>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="term" module="core" mode="change">
+          <desc>Specific term or concept used in the abstract</desc>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
