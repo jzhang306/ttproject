@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:tei="http://www.tei-c.org/ns/1.0"
+         xmlns:teix="http://www.tei-c.org/ns/Examples"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+         ns="http://www.tei-c.org/ns/1.0"><!--
+Schema generated from ODD source 2025-06-25T09:38:36Z. .  
+--><!---->
+   <define name="articles">
+      <element name="articles">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Main container grouping multiple articles</a:documentation>
+         <zeroOrMore>
+            <ref name="article"/>
+         </zeroOrMore>
+      </element>
+   </define>
+   <define name="article">
+      <element name="article">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A scientific or academic article</a:documentation>
+      <ref name="articleContent"/>
+      </element>
+   </define>
+   <define name="articleContent">
+      <group>
+         <ref name="title"/>
+         <ref name="author"/>
+         <ref name="date"/>
+         <ref name="discipline"/>
+         <ref name="source"/>
+         <ref name="abstract"/>
+      </group>
+   </define>
+   <define name="title">
+      <element name="title">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Title of the article</a:documentation>
+         <text/>
+      </element>
+   </define>
+   <define name="author">
+      <element name="author">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Author of the article</a:documentation>
+         <text/>
+      </element>
+   </define>
+   <define name="date">
+      <element name="date">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Date of publication</a:documentation>
+         <text/>
+      </element>
+   </define>
+   <define name="discipline">
+      <element name="discipline">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Disciplinary domain of the article</a:documentation>
+         <text/>
+      </element>
+   </define>
+   <define name="source">
+      <element name="source">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Original source or journal</a:documentation>
+         <text/>
+      </element>
+   </define>
+   <define name="abstract">
+      <element name="abstract">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Annotated abstract that may include tagged terms</a:documentation>
+         <zeroOrMore>
+            <choice>
+               <text/>
+               <ref name="term"/>
+            </choice>
+         </zeroOrMore>
+      </element>
+   </define>
+   <define name="term">
+      <element name="term">
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Specific term or concept used in the abstract</a:documentation>
+         <text/>
+      </element>
+   </define>
+   <start>
+      <choice>
+         <ref name="articles"/>
+      </choice>
+   </start>
+</grammar>
